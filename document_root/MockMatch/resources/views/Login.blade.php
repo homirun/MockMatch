@@ -16,8 +16,8 @@
   <body>
     <div id="app">
       <v-app>
-        <!-- これがさっき修正したファイル -->
-        <example-component></example-component>
+        <toolbar-component></toolbar-component>
+        <login-component></login-component>
       </v-app>
     </div>
     <!-- Scripts -->

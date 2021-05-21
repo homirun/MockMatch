@@ -16,8 +16,8 @@
   <body>
     <div id="app">
       <v-app>
-        <!-- これがさっき修正したファイル -->
-        <example-component></example-component>
+        <toolbar-component></toolbar-component>
+        <index-component :login_url="{{ json_encode(route('login.index')) }}"></index-component>
       </v-app>
     </div>
     <!-- Scripts -->
