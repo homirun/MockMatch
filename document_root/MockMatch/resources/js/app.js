@@ -26,6 +26,7 @@
  Vue.component('example-component', require('./components/ExampleComponent.vue').default);
  Vue.component('index-component', require('./components/IndexComponent.vue').default);
  Vue.component('login-component', require('./components/LoginComponent.vue').default);
+ Vue.component('user-create-component', require('./components/UserCreateComponent.vue').default);
 
  Vue.component('toolbar-component', require('./components/base/ToolbarComponent.vue').default);
  /**

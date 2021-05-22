@@ -20,6 +20,7 @@
                 color="orange"
                 dark
                 class="mx-5 my-7"
+                :href="create_user_url"
                 >
                     Create Account
                 </v-btn>
@@ -33,6 +34,10 @@
     export default {
         props: {
             login_url: {
+                type: String,
+                required: true
+            },
+            create_user_url: {
                 type: String,
                 required: true
             }

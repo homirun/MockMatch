@@ -2,7 +2,7 @@
     <div id="index-root">
         <v-card max-width="800" class="mx-auto my-12">
             <v-card-title>
-                <h1 class="display-1">MockMatch</h1>
+                <h1 class="display-1">MockMatch - LOGIN</h1>
             </v-card-title>
             <v-card-text>
                 <v-form :action="post_url" method="post">

@@ -1,6 +1,8 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/laravel,visualstudiocode,vue,composer,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=laravel,visualstudiocode,vue,composer,node
+
+### IDEA ###
+.idea/
 
 ### Composer ###
 composer.phar

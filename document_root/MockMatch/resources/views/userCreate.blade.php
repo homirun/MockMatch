@@ -19,7 +19,7 @@
     <div id="app">
         <v-app>
             <toolbar-component></toolbar-component>
-            <index-component :login_url="{{ json_encode(route('login.index')) }}" :create_user_url="{{ json_encode(route('userCreate.index')) }}"></index-component>
+            <user-create-component :post_url={{ json_encode(route('register.register'))}} :errors={{ json_encode($errors) }}></user-create-component>
         </v-app>
     </div>
     <!-- Scripts -->
