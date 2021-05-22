@@ -2188,22 +2188,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      res: null,
       isShow: false,
       csrf: document.head.querySelector('meta[name="csrf-token"]').content,
-      company_items: ['i', 'ms', 'pb']
+      companyItems: ['i', 'ms', 'pb'],
+      valid: false,
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      company: 'i',
+      nameRules: [function (v) {
+        return !!v || 'Name is required';
+      }, function (v) {
+        return v && v.length <= 10 || 'Name must be less than 10 characters';
+      }],
+      emailRules: [function (v) {
+        return !!v || 'E-mail is required';
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || 'E-mail must be valid';
+      }],
+      passwordRules: [function (v) {
+        return !!v || 'Password is required';
+      }, function (v) {
+        return v && v.length >= 8 || 'Password must be than 8 characters';
+      }],
+      companyRules: [function (v) {
+        return !!v || 'Company is required';
+      }] // password_confirmationは変数スコープの問題でタグに直書き
+
     };
   },
   props: {
     post_url: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    dataSend: function dataSend() {
+      if (this.validate() === true) {
+        var params = new URLSearchParams();
+        params.append('_csrf', this.csrf);
+        params.append('name', this.name);
+        params.append('email', this.email);
+        params.append('password', this.password);
+        params.append('password_confirmation', this.password_confirmation);
+        params.append('company', this.company);
+        axios.post(this.post_url, params).then(function (response) {
+          self.res = response;
+          console.log(self.res['data']['redirect_url']);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     },
-    errors: {
-      type: Object,
-      required: true
+    validate: function validate() {
+      return this.$refs.form.validate();
     }
   }
 });
@@ -38800,10 +38859,19 @@ var render = function() {
           _c(
             "v-card-text",
             [
-              _vm._v("\n            " + _vm._s(_vm.errors) + "\n            "),
               _c(
                 "v-form",
-                { attrs: { action: _vm.post_url, method: "post" } },
+                {
+                  ref: "form",
+                  attrs: { "lazy-validation": "" },
+                  model: {
+                    value: _vm.valid,
+                    callback: function($$v) {
+                      _vm.valid = $$v
+                    },
+                    expression: "valid"
+                  }
+                },
                 [
                   _c("input", {
                     attrs: { type: "hidden", name: "_token" },
@@ -38814,7 +38882,17 @@ var render = function() {
                     attrs: {
                       "prepend-icon": "mdi-account-circle",
                       label: "Name",
-                      name: "name"
+                      name: "name",
+                      counter: 10,
+                      rules: _vm.nameRules,
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.name,
+                      callback: function($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name"
                     }
                   }),
                   _vm._v(" "),
@@ -38822,7 +38900,16 @@ var render = function() {
                     attrs: {
                       "prepend-icon": "mdi-at",
                       label: "Email",
-                      name: "email"
+                      name: "email",
+                      rules: _vm.emailRules,
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.email,
+                      callback: function($$v) {
+                        _vm.email = $$v
+                      },
+                      expression: "email"
                     }
                   }),
                   _vm._v(" "),
@@ -38832,12 +38919,20 @@ var render = function() {
                       "append-icon": _vm.isShow ? "mdi-eye" : "mdi-eye-off",
                       label: "Password",
                       type: _vm.isShow ? "text" : "password",
+                      rules: _vm.passwordRules,
                       name: "password"
                     },
                     on: {
                       "click:append": function($event) {
                         _vm.isShow = !_vm.isShow
                       }
+                    },
+                    model: {
+                      value: _vm.password,
+                      callback: function($$v) {
+                        _vm.password = $$v
+                      },
+                      expression: "password"
                     }
                   }),
                   _vm._v(" "),
@@ -38847,21 +38942,43 @@ var render = function() {
                       "append-icon": _vm.isShow ? "mdi-eye" : "mdi-eye-off",
                       label: "Password Confirm",
                       type: _vm.isShow ? "text" : "password",
+                      rules: [
+                        function(v) {
+                          return !!v || "Password Confirm is required"
+                        },
+                        _vm.password === _vm.password_confirmation ||
+                          "Password confirmation doesn't match password"
+                      ],
                       name: "password_confirmation"
                     },
                     on: {
                       "click:append": function($event) {
                         _vm.isShow = !_vm.isShow
                       }
+                    },
+                    model: {
+                      value: _vm.password_confirmation,
+                      callback: function($$v) {
+                        _vm.password_confirmation = $$v
+                      },
+                      expression: "password_confirmation"
                     }
                   }),
                   _vm._v(" "),
                   _c("v-select", {
                     attrs: {
                       "prepend-icon": "mdi-office-building",
-                      items: _vm.company_items,
+                      items: _vm.companyItems,
                       label: "Company",
-                      name: "company"
+                      name: "company",
+                      rules: _vm.companyRules
+                    },
+                    model: {
+                      value: _vm.company,
+                      callback: function($$v) {
+                        _vm.company = $$v
+                      },
+                      expression: "company"
                     }
                   }),
                   _vm._v(" "),
@@ -38874,8 +38991,12 @@ var render = function() {
                         [
                           _c(
                             "v-btn",
-                            { staticClass: "info", attrs: { type: "submit" } },
-                            [_vm._v("LOGIN")]
+                            {
+                              staticClass: "warning",
+                              attrs: { disabled: !_vm.valid },
+                              on: { click: _vm.dataSend }
+                            },
+                            [_vm._v("Create")]
                           )
                         ],
                         1
