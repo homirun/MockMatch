@@ -2254,8 +2254,9 @@ __webpack_require__.r(__webpack_exports__);
         params.append('password_confirmation', this.password_confirmation);
         params.append('company', this.company);
         axios.post(this.post_url, params).then(function (response) {
-          self.res = response;
-          console.log(self.res['data']['redirect_url']);
+          self.res = response; // console.log(self.res['data']['redirect_url'])
+
+          window.location.href = self.res['data']['redirect_url'];
         })["catch"](function (error) {
           console.log(error);
         });

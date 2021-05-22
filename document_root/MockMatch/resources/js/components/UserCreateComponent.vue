@@ -116,7 +116,8 @@ export default {
                 axios.post(this.post_url, params)
                     .then(function (response) {
                         self.res = response
-                        console.log(self.res['data']['redirect_url'])
+                        // console.log(self.res['data']['redirect_url'])
+                        window.location.href = self.res['data']['redirect_url'];
                     }).catch(error => {
                     console.log(error)
                 })
