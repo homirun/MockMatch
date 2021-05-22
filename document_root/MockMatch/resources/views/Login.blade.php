@@ -17,7 +17,7 @@
     <div id="app">
       <v-app>
         <toolbar-component></toolbar-component>
-        <login-component></login-component>
+        <login-component :post_url={{json_encode(route('login.auth'))}}></login-component>
       </v-app>
     </div>
     <!-- Scripts -->

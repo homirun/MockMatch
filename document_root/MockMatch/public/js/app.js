@@ -2102,11 +2102,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isShow: false
+      isShow: false,
+      csrf: document.head.querySelector('meta[name="csrf-token"]').content
     };
+  },
+  props: {
+    post_url: {
+      type: String,
+      required: true
+    }
   }
 });
 
@@ -38597,11 +38606,18 @@ var render = function() {
             [
               _c(
                 "v-form",
+                { attrs: { action: _vm.post_url, method: "post" } },
                 [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
                   _c("v-text-field", {
                     attrs: {
                       "prepend-icon": "mdi-account-circle",
-                      label: "Email"
+                      label: "Email",
+                      name: "email"
                     }
                   }),
                   _vm._v(" "),
@@ -38610,7 +38626,8 @@ var render = function() {
                       "prepend-icon": "mdi-lock",
                       "append-icon": _vm.isShow ? "mdi-eye" : "mdi-eye-off",
                       label: "Password",
-                      type: _vm.isShow ? "text" : "password"
+                      type: _vm.isShow ? "text" : "password",
+                      name: "password"
                     },
                     on: {
                       "click:append": function($event) {
@@ -38626,9 +38643,11 @@ var render = function() {
                         "v-col",
                         { staticClass: "text-right" },
                         [
-                          _c("v-btn", { staticClass: "info" }, [
-                            _vm._v("LOGIN")
-                          ])
+                          _c(
+                            "v-btn",
+                            { staticClass: "info", attrs: { type: "submit" } },
+                            [_vm._v("LOGIN")]
+                          )
                         ],
                         1
                       )

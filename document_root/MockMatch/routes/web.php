@@ -13,4 +13,4 @@
 
 Route::get('/', 'IndexController@index')->name('index.index');
 Route::get('/login', 'LoginController@index')->name('login.index');
-
+Route::post('/login', 'Auth\LoginController@login')->name('login.auth');
