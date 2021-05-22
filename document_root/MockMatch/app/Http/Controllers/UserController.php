@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UserCreateController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class UserCreateController extends Controller
      */
     public function index()
     {
-        return view("userCreate");
+
     }
 
     /**
@@ -23,8 +24,16 @@ class UserCreateController extends Controller
      */
     public function create()
     {
-        //
+        return view("userCreate");
     }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('index.index');
+    }
+
 
     /**
      * Store a newly created resource in storage.

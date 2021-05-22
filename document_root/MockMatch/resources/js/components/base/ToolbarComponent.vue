@@ -1,6 +1,6 @@
 <template>
     <div id="tool-root">
-        <v-toolbar>
+        <v-toolbar @click="moveIndex">
             <v-toolbar-title>MockMatch</v-toolbar-title>
         </v-toolbar>
     </div>
@@ -8,8 +8,10 @@
 
 <script>
     export default {
-        mounted() {
-            // console.log('Component mounted.')
+        methods: {
+            moveIndex: function(){
+                window.location.href = '/'
+            }
         }
     }
 </script>

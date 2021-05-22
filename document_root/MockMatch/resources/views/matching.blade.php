@@ -16,10 +16,15 @@
 </head>
 
 <body>
+
     <div id="app">
         <v-app>
             <toolbar-component></toolbar-component>
-            <index-component :login_url="{{ json_encode(route('login.index')) }}" :create_user_url="{{ json_encode(route('user.create')) }}"></index-component>
+            <matching-component
+                :user="{{ json_encode($auths) }}"
+                :logout_url="{{ json_encode(route('user.logout')) }}"
+            >
+            </matching-component>
         </v-app>
     </div>
     <!-- Scripts -->
