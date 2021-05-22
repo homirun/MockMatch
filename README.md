@@ -1,25 +1,9 @@
 # MockMatch
-GTB2021 チームA「GMO LunchMatch」
-
 ## Description
 - Laravel 6.20.27
 - MySQL 5.7
 - Nginx latest
 - PHP-FPM latest
-
-
-## Development
-Mainブランチは保護されている（はず）なので各自で作業ブランチを切ってから作業してください。
-margeする際は一人以上のレビュを受けないとできないので適当に声を掛けてみてください。
-
-### Project (Develop)
-https://github.com/homirun/LunchMatch/projects/1
-
-### 画面
-https://github.com/homirun/LunchMatch/issues/3
-
-### FigJam
-https://www.figma.com/file/VzH8gEjjp7JJPs0k5IhlH1/%E3%83%81%E3%83%BC%E3%83%A0A?node-id=0%3A1
 
 ## Usage
 ### 開発環境構築手順
@@ -57,7 +41,3 @@ $ npm install vuetify
 
 $ npm run watch
 ```
-
-## 参考URL
-- https://qiita.com/ktoshi/items/5fd7a11cbc00b70c2db1
-- https://github.com/homirun/laravel_docker_workspace
