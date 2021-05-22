@@ -1,4 +1,4 @@
-# GMO LunchMatch
+# MockMatch
 GTB2021 チームA「GMO LunchMatch」
 
 ## Description
