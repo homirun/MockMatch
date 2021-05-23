@@ -10,6 +10,6 @@ class Lunch extends Model
     use Notifiable;
 
     protected $fillable = [
-        'reserve_date_time', 'user_id', 'lunch_group_id'
+        'reserve_date', 'user_id', 'lunch_group_id', 'start_time', 'end_time'
     ];
 }

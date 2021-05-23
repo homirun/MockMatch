@@ -117,7 +117,7 @@ export default {
                     .then(function (response) {
                         self.res = response
                         // console.log(self.res['data']['redirect_url'])
-                        window.location.href = self.res['data']['redirect_url'];
+                        window.location.href = self.res['data']['redirect_url']
                     }).catch(error => {
                     console.log(error)
                 })

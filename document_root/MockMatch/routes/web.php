@@ -20,4 +20,7 @@ Route::get('/user/create', 'UserController@create')->name('user.create');
 Route::get('/user/logout', 'UserController@logout')->name('user.logout');
 Route::post('/user/create', 'Auth\RegisterController@register')->name('register.register');
 
-Route::get('/matching', 'MatchingController@index')->name('matching.index');
+Route::get('/matching', 'MatchingController@create')->name('matching.create');
+Route::post('/matching', 'MatchingController@store')->name('matching.store');
+
+Route::get('/reserved', 'ReservedController@index')->name('reserved.index');

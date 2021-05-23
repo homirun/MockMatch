@@ -20,12 +20,10 @@
     <div id="app">
         <v-app>
             <toolbar-component></toolbar-component>
-            <matching-component
-                :user="{{ json_encode($auths) }}"
+            <reserved-component
                 :logout_url="{{ json_encode(route('user.logout')) }}"
-                :reserve_url="{{ json_encode(route('matching.store')) }}"
             >
-            </matching-component>
+            </reserved-component>
         </v-app>
     </div>
     <!-- Scripts -->

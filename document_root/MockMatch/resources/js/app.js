@@ -29,6 +29,7 @@ Vue.component('index-component', require('./components/IndexComponent.vue').defa
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('user-create-component', require('./components/UserCreateComponent.vue').default);
 Vue.component('matching-component', require('./components/MatchingComponent.vue').default);
+Vue.component('reserved-component', require('./components/ReservedComponent.vue').default);
 
 Vue.component('toolbar-component', require('./components/base/ToolbarComponent.vue').default);
 /**

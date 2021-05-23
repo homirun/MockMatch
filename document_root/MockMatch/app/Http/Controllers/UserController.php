@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest',['except'=>['logout']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->middleware('guest');
         return view("userCreate");
     }
 

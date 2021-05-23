@@ -141,6 +141,7 @@
                     color="success"
                     dark
                     class="mx-5 my-7"
+                    @click="dataSend"
                 >
                     Reserve
                 </v-btn>
@@ -173,6 +174,22 @@ export default {
         reserve_url: {
             type: String,
             required: true,
+        }
+    },
+    methods: {
+        dataSend: function () {
+            let params = new URLSearchParams()
+            params.append('_csrf', this.csrf)
+            params.append('reserve_date', this.date)
+            params.append('start_time', this.startTime)
+            params.append('end_time', this.endTime)
+
+            axios.post(this.reserve_url, params)
+                .then(function (response) {
+                    window.location.href = response['data']['redirect_url']
+                }).catch(error => {
+                console.log(error)
+            })
         }
     }
 }

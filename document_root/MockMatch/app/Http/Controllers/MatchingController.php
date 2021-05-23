@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Lunch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class MatchingController extends Controller
@@ -20,8 +22,7 @@ class MatchingController extends Controller
      */
     public function index()
     {
-        $auths = Auth::user();
-        return view('matching', ['auths' => $auths]);
+        //
     }
 
     /**
@@ -31,7 +32,8 @@ class MatchingController extends Controller
      */
     public function create()
     {
-        //
+        $auths = Auth::user();
+        return view('matching', ['auths' => $auths]);
     }
 
     /**
@@ -42,7 +44,17 @@ class MatchingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $auths = Auth::user();
+        # TODO: validateを挟む
+        $user_id = $auths['id'];
+        Lunch::create([
+            'reserve_date' => $request['reserve_date'],
+            'start_time' => $request['start_time'],
+            'end_time' => $request['end_time'],
+            'user_id' => $user_id,
+            'lunch_group_id' => null,
+        ]);
+        return ['redirect_url' => route('reserved.index')];
     }
 
     /**
