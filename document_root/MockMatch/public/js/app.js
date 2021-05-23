@@ -2158,13 +2158,157 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      csrf: document.head.querySelector('meta[name="csrf-token"]').content,
+      date: new Date().toISOString().substr(0, 10),
+      dateMenu: false,
+      startTime: null,
+      endTime: null,
+      startTimeMenu: false,
+      endTimeMenu: false
+    };
+  },
   props: {
     user: {
       type: Object,
       required: true
     },
     logout_url: {
+      type: String,
+      required: true
+    },
+    reserve_url: {
       type: String,
       required: true
     }
@@ -38903,7 +39047,7 @@ var render = function() {
         "v-card",
         { staticClass: "mx-auto my-12", attrs: { "max-width": "800" } },
         [
-          _c("v-card-title", [_vm._v("MockMatch Matching Config")]),
+          _c("v-card-title", [_vm._v("MockMatch")]),
           _vm._v(" "),
           _c("v-card-text", [
             _vm._v(
@@ -38929,6 +39073,370 @@ var render = function() {
                   }
                 },
                 [_vm._v("\n                Logout\n            ")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card",
+        { staticClass: "mx-auto my-12", attrs: { "max-width": "800" } },
+        [
+          _c("v-card-title", [_vm._v("Matching Reserve")]),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-form",
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-menu",
+                    {
+                      ref: "dateMenu",
+                      attrs: {
+                        "close-on-content-click": false,
+                        "return-value": _vm.date,
+                        transition: "scale-transition",
+                        "offset-y": "",
+                        "min-width": "auto"
+                      },
+                      on: {
+                        "update:returnValue": function($event) {
+                          _vm.date = $event
+                        },
+                        "update:return-value": function($event) {
+                          _vm.date = $event
+                        }
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function(ref) {
+                            var on = ref.on
+                            var attrs = ref.attrs
+                            return [
+                              _c(
+                                "v-text-field",
+                                _vm._g(
+                                  _vm._b(
+                                    {
+                                      attrs: {
+                                        label: "日付",
+                                        "prepend-icon": "mdi-calendar",
+                                        readonly: ""
+                                      },
+                                      model: {
+                                        value: _vm.date,
+                                        callback: function($$v) {
+                                          _vm.date = $$v
+                                        },
+                                        expression: "date"
+                                      }
+                                    },
+                                    "v-text-field",
+                                    attrs,
+                                    false
+                                  ),
+                                  on
+                                )
+                              )
+                            ]
+                          }
+                        }
+                      ]),
+                      model: {
+                        value: _vm.dateMenu,
+                        callback: function($$v) {
+                          _vm.dateMenu = $$v
+                        },
+                        expression: "dateMenu"
+                      }
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-date-picker",
+                        {
+                          attrs: { "no-title": "", scrollable: "" },
+                          model: {
+                            value: _vm.date,
+                            callback: function($$v) {
+                              _vm.date = $$v
+                            },
+                            expression: "date"
+                          }
+                        },
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { text: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.dateMenu = false
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Cancel\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { text: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.$refs.dateMenu.save(_vm.date)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            OK\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "11", sm: "5" } },
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              ref: "startTimeMenu",
+                              attrs: {
+                                "close-on-content-click": false,
+                                "nudge-right": 40,
+                                "return-value": _vm.startTime,
+                                transition: "scale-transition",
+                                "offset-y": "",
+                                "max-width": "290px",
+                                "min-width": "290px"
+                              },
+                              on: {
+                                "update:returnValue": function($event) {
+                                  _vm.startTime = $event
+                                },
+                                "update:return-value": function($event) {
+                                  _vm.startTime = $event
+                                }
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    var attrs = ref.attrs
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          _vm._b(
+                                            {
+                                              attrs: {
+                                                label: "希望開始時間",
+                                                "prepend-icon":
+                                                  "mdi-clock-time-four-outline",
+                                                readonly: ""
+                                              },
+                                              model: {
+                                                value: _vm.startTime,
+                                                callback: function($$v) {
+                                                  _vm.startTime = $$v
+                                                },
+                                                expression: "startTime"
+                                              }
+                                            },
+                                            "v-text-field",
+                                            attrs,
+                                            false
+                                          ),
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.startTimeMenu,
+                                callback: function($$v) {
+                                  _vm.startTimeMenu = $$v
+                                },
+                                expression: "startTimeMenu"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _vm.startTimeMenu
+                                ? _c("v-time-picker", {
+                                    attrs: { "full-width": "" },
+                                    on: {
+                                      "click:minute": function($event) {
+                                        return _vm.$refs.startTimeMenu.save(
+                                          _vm.startTime
+                                        )
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.startTime,
+                                      callback: function($$v) {
+                                        _vm.startTime = $$v
+                                      },
+                                      expression: "startTime"
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "11", sm: "5" } },
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              ref: "endTimeMenu",
+                              attrs: {
+                                "close-on-content-click": false,
+                                "nudge-right": 40,
+                                "return-value": _vm.endTime,
+                                transition: "scale-transition",
+                                "offset-y": "",
+                                "max-width": "290px",
+                                "min-width": "290px"
+                              },
+                              on: {
+                                "update:returnValue": function($event) {
+                                  _vm.endTime = $event
+                                },
+                                "update:return-value": function($event) {
+                                  _vm.endTime = $event
+                                }
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    var attrs = ref.attrs
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          _vm._b(
+                                            {
+                                              attrs: {
+                                                label: "希望終了時間",
+                                                "prepend-icon":
+                                                  "mdi-clock-time-four-outline",
+                                                readonly: ""
+                                              },
+                                              model: {
+                                                value: _vm.endTime,
+                                                callback: function($$v) {
+                                                  _vm.endTime = $$v
+                                                },
+                                                expression: "endTime"
+                                              }
+                                            },
+                                            "v-text-field",
+                                            attrs,
+                                            false
+                                          ),
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.endTimeMenu,
+                                callback: function($$v) {
+                                  _vm.endTimeMenu = $$v
+                                },
+                                expression: "endTimeMenu"
+                              }
+                            },
+                            [
+                              _vm._v(" "),
+                              _vm.endTimeMenu
+                                ? _c("v-time-picker", {
+                                    attrs: { "full-width": "" },
+                                    on: {
+                                      "click:minute": function($event) {
+                                        return _vm.$refs.endTimeMenu.save(
+                                          _vm.endTime
+                                        )
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.endTime,
+                                      callback: function($$v) {
+                                        _vm.endTime = $$v
+                                      },
+                                      expression: "endTime"
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-center" },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "mx-5 my-7",
+                  attrs: { "x-large": "", color: "success", dark: "" }
+                },
+                [_vm._v("\n                Reserve\n            ")]
               )
             ],
             1
