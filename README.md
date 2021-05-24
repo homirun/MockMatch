@@ -14,7 +14,7 @@ $ docker-compose exec app bash
 
 
 # in `app` container
-$ cd LunchMatch
+$ cd MockMatch
 $ composer install
 $ npm install
 
@@ -32,8 +32,8 @@ $ docker-compose exec app bash
 
 
 # in `app` container
-$ composer create-project --prefer-dist laravel/laravel LunchMatch "6.*"
-$ cd LunchMatch
+$ composer create-project --prefer-dist laravel/laravel MockMatch "6.*"
+$ cd MockMatch
 $ composer require laravel/ui 1.*
 $ php artisan ui vue
 $ npm install
